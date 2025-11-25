@@ -38,7 +38,7 @@ export default function Footer() {
             
             <div className="flex items-center gap-4 pt-2">
                <span className="px-2 py-1 rounded bg-blue-500/10 text-blue-600 dark:text-blue-400 text-[10px] font-mono border border-blue-500/20">
-                 OFFICIAL ROMO TOOL
+                 NOT YET OFFICIAL ROMO TOOL
                </span>
             </div>
 
