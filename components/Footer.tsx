@@ -8,12 +8,7 @@ export default function Footer() {
       w-full mt-20 relative z-20 
       border-t
       transition-colors duration-300
-      
-      /* --- THE FIX IS HERE --- */
-      /* 1. Light Mode: Solid Slate-50 (Matches body, blocks grid) */
       bg-slate-50 border-slate-200
-      
-      /* 2. Dark Mode: Solid Slate-900 (Darker than body, blocks grid) */
       dark:bg-slate-900 dark:border-white/5
     ">
       
@@ -118,20 +113,19 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* BOTTOM BAR */}
+      {/* BOTTOM BAR (Fixed Visibility) */}
       <div className="
         py-6 border-t
-        /* Solid backgrounds to keep grid hidden */
-        bg-slate-100 border-slate-200
-        dark:bg-black dark:border-white/5
+        bg-slate-200 border-slate-300
+        dark:bg-black dark:border-white/10
       ">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+          <div className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-400">
              <FiGlobe />
              <span>Republic of the Philippines</span>
           </div>
 
-          <p className="text-xs text-center md:text-right text-slate-500 dark:text-slate-400">
+          <p className="text-xs text-center md:text-right text-slate-600 dark:text-slate-400">
             © {new Date().getFullYear()} ROMO • TESDA. All Content is in the public domain unless otherwise stated.
           </p>
         </div>
