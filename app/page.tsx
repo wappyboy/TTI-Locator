@@ -1,25 +1,29 @@
-// app/page.jsx
 "use client";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import SearchBar from "../components/SearchBar";
 import FilterChips from "../components/FilterChips";
 import TtiCard from "../components/TtiCard";
 import ttis from "../data/ttis.json";
- // next supports importing JSON
+
+type Tti = {
+  id: string;
+  name: string;
+  province: string;
+  region: string;
+  lat?: number;
+  lng?: number;
+};
+
 
 export default function Page() {
   const [query, setQuery] = useState("");
-  const [region, setRegion] = useState(null);
-  const [items, setItems] = useState([]);
+  const [region, setRegion] = useState<string | null>(null);
+  const items: Tti[] = ttis as Tti[];
 
-  useEffect(() => {
-    // load data (local JSON)
-    setItems(ttis);
-  }, []);
+ 
 
   const regions = useMemo(() => {
-    const set = new Set(items.map((i) => i.region).filter(Boolean));
-    return Array.from(set);
+    return Array.from(new Set(items.map((i) => i.region).filter(Boolean)));
   }, [items]);
 
   const filtered = useMemo(() => {
@@ -27,10 +31,11 @@ export default function Page() {
     return items.filter((i) => {
       if (region && i.region !== region) return false;
       if (!q) return true;
+
       return (
-        i.name.toLowerCase().includes(q) ||
-        (i.province && i.province.toLowerCase().includes(q)) ||
-        (i.region && i.region.toLowerCase().includes(q))
+        i.name?.toLowerCase().includes(q) ||
+        i.province?.toLowerCase().includes(q) ||
+        i.region?.toLowerCase().includes(q)
       );
     });
   }, [items, query, region]);
@@ -39,17 +44,28 @@ export default function Page() {
     <div className="max-w-5xl mx-auto">
       <section className="mb-6">
         <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-          <div className="flex-1"><SearchBar query={query} setQuery={setQuery} /></div>
-          <div className="w-full sm:w-64">
+          <div className="flex-1">
+            <div className="mb-3 text-white/80 font-semibold text-lg sm:text-xl">
+              TTI Locator
+            </div>
+            <SearchBar query={query} setQuery={setQuery} />
+          </div>
+          <div className="w-full sm:w-64 mt-3 sm:mt-0">
             <div className="text-sm text-white/70 mb-2">Region</div>
-            <FilterChips regions={regions} activeRegion={region} setActiveRegion={setRegion} />
+            <FilterChips
+              regions={regions}
+              activeRegion={region}
+              setActiveRegion={setRegion}
+            />
           </div>
         </div>
       </section>
 
       <section className="grid gap-4 grid-cols-1 sm:grid-cols-2">
         {filtered.length === 0 ? (
-          <div className="text-white/70 col-span-full py-10 text-center">No results found.</div>
+          <div className="text-white/70 col-span-full py-10 text-center">
+            No results found.
+          </div>
         ) : (
           filtered.map((t) => <TtiCard key={t.id} tti={t} />)
         )}
