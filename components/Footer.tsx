@@ -48,7 +48,7 @@ export default function Footer() {
                  Follow Us
                </h4>
                <a 
-                 href="https://www.facebook.com/TESDA.NITESD" // Replace with your actual FB link
+                 href="https://www.facebook.com/TESDAOfficial" // Replace with your actual FB link
                  target="_blank" 
                  rel="noopener noreferrer"
                  className="
