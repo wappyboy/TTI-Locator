@@ -3,108 +3,93 @@ import React from "react";
 import { motion } from "framer-motion";
 import ThemeToggle from "./ThemeToggle"; 
 
-export default function Header() {
-  // Shared Animation Config
-  const spinTransition = {
-    duration: 8, // 8 seconds per full rotation (Smooth & Majestic)
-    repeat: Infinity,
-    ease: "linear"
-  };
+// --- 1. MOVED CONFIG OUTSIDE (Better Performance) ---
+const spinTransition = {
+  duration: 8,
+  repeat: Infinity,
+  ease: "linear"
+};
 
+// --- 2. MOVED COMPONENT OUTSIDE (Fixes the Error) ---
+const AnimatedLogos = ({ sizeClass }) => (
+  <>
+    {/* 1. BAGONG PILIPINAS */}
+    <div style={{ perspective: "1000px" }}>
+      <motion.div 
+        className={`${sizeClass} relative`}
+        animate={{ rotateY: 360 }}
+        transition={spinTransition}
+        style={{ transformStyle: "preserve-3d" }}
+      >
+        <img src="/bagong-pilipinas.png" alt="Bagong Pilipinas" className="w-full h-full object-contain drop-shadow-md" />
+        <div className="absolute inset-0 rounded-full bg-black/10 blur-md -z-10" style={{ transform: "translateZ(-4px)" }} />
+      </motion.div>
+    </div>
+
+    {/* Divider */}
+    <div className="w-px h-8 md:h-10 bg-slate-300 dark:bg-white/10" />
+
+    {/* 2. TESDA */}
+    <div style={{ perspective: "1000px" }}>
+      <motion.div 
+        className={`${sizeClass} relative`}
+        animate={{ rotateY: 360 }}
+        transition={spinTransition}
+        style={{ transformStyle: "preserve-3d" }}
+      >
+        <img src="/tesda-logo.png" alt="TESDA" className="w-full h-full object-contain drop-shadow-md" />
+        <div className="absolute inset-0 rounded-full bg-black/10 blur-md -z-10" style={{ transform: "translateZ(-4px)" }} />
+      </motion.div>
+    </div>
+  </>
+);
+
+export default function Header() {
   return (
     <header className="relative w-full z-50">
-      {/* 1. BACKGROUND GLOW (New Color Injection) */}
-      <div className="
-        absolute inset-0 
-        backdrop-blur-md border-b 
-        transition-colors duration-300
-        /* Light Mode: White with subtle blue tint */
-        bg-white/80 border-slate-200
-        /* Dark Mode: Dark Navy with a hint of warmth/gold at the top */
-        dark:bg-slate-900/90 dark:border-white/5
-      ">
-        {/* Subtle Gradient Mesh for Dark Mode (Adds depth so it's not flat blue) */}
+      
+      {/* BACKGROUND GLOW */}
+      <div className="absolute inset-0 backdrop-blur-md border-b transition-colors duration-300 bg-white/80 border-slate-200 dark:bg-slate-900/90 dark:border-white/5">
         <div className="absolute top-0 left-1/4 w-1/2 h-full bg-blue-500/10 blur-[100px] pointer-events-none opacity-0 dark:opacity-100" />
         <div className="absolute top-0 right-1/4 w-1/4 h-full bg-amber-500/10 blur-[100px] pointer-events-none opacity-0 dark:opacity-100" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="flex items-center justify-between py-4 h-24">
+        {/* CONTAINER: Adjusted height to fit stacked content on mobile */}
+        <div className="flex items-center justify-center md:justify-between py-3 md:py-4 min-h-[120px] md:min-h-[6rem]">
 
-         {/* LEFT: 3D ANIMATED LOGOS */}
-          <div className="flex items-center gap-3 sm:gap-4 z-20">
-            
-            {/* 1. BAGONG PILIPINAS (3D) - NOW ALWAYS VISIBLE */}
-            <div style={{ perspective: "1000px" }}>
-              <motion.div 
-                // Responsive Size: 
-                // w-10 (40px) on Mobile
-                // sm:w-14 (56px) on Desktop
-                className="w-10 h-10 sm:w-14 sm:h-14 relative"
-                animate={{ rotateY: 360 }}
-                transition={spinTransition}
-                style={{ transformStyle: "preserve-3d" }}
-              >
-                <img 
-                  src="/bagong-pilipinas.png" 
-                  alt="Bagong Pilipinas" 
-                  className="w-full h-full object-contain drop-shadow-md" 
-                />
-                <div 
-                  className="absolute inset-0 rounded-full bg-black/10 blur-md -z-10" 
-                  style={{ transform: "translateZ(-4px)" }} 
-                />
-              </motion.div>
-            </div>
-            
-            {/* Divider - Always visible now */}
-            <div className="block w-px h-8 sm:h-10 bg-slate-300 dark:bg-white/10" />
-            
-            {/* 2. TESDA (3D) */}
-            <div style={{ perspective: "1000px" }}>
-              <motion.div 
-                className="w-10 h-10 sm:w-14 sm:h-14 relative"
-                animate={{ rotateY: 360 }}
-                transition={spinTransition}
-                style={{ transformStyle: "preserve-3d" }}
-              >
-                <img 
-                  src="/tesda-logo.png" 
-                  alt="TESDA" 
-                  className="w-full h-full object-contain drop-shadow-md" 
-                />
-                <div 
-                  className="absolute inset-0 rounded-full bg-black/10 blur-md -z-10" 
-                  style={{ transform: "translateZ(-4px)" }} 
-                />
-              </motion.div>
-            </div>
-
+          {/* --- A. DESKTOP LOGOS (Hidden on Mobile) --- */}
+          <div className="hidden md:flex absolute left-4 lg:left-8 items-center gap-4 z-20">
+            <AnimatedLogos sizeClass="w-14 h-14" />
           </div>
 
-          {/* CENTER: Text (Updated Colors) */}
-          <div className="absolute left-0 right-0 top-0 bottom-0 flex flex-col items-center justify-center pointer-events-none">
+          {/* --- B. CENTER CONTENT (Stacked on Mobile, Text Only on Desktop) --- */}
+          <div className="flex flex-col items-center justify-center w-full text-center z-10">
+            
+            {/* MOBILE LOGOS (Hidden on Desktop) */}
+            <div className="flex md:hidden items-center gap-3 mb-3">
+              <AnimatedLogos sizeClass="w-12 h-12" />
+            </div>
+
+            {/* TEXT (Visible Everywhere) */}
             <h1 className="
-              text-3xl md:text-4xl font-extrabold tracking-tight drop-shadow-sm text-center
+              text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight drop-shadow-sm
               text-transparent bg-clip-text 
-              /* Light Mode Gradient: Official Blue to Red (Patriotic) */
               bg-gradient-to-r from-blue-700 via-blue-600 to-red-600
-              /* Dark Mode Gradient: White to Gold (Excellence) */
               dark:from-white dark:via-blue-100 dark:to-amber-200
             ">
               ROMO-TTIMD
             </h1>
             <p className="
-              hidden md:block text-xs font-medium tracking-[0.2em] uppercase mt-1
-              /* Updated Subtitle Colors */
+              text-[10px] sm:text-xs font-medium tracking-[0.2em] uppercase mt-1
               text-slate-500 dark:text-blue-200/80
             ">
               Regional Operations Management Division
             </p>
           </div>
 
-          {/* RIGHT: Theme Toggle */}
-          <div className="flex items-center gap-2">
+          {/* --- C. THEME TOGGLE (Absolute Right) --- */}
+          <div className="absolute right-4 top-4 md:top-1/2 md:-translate-y-1/2 z-30">
             <ThemeToggle />
           </div>
 
