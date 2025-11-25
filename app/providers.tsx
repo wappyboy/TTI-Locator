@@ -1,20 +1,13 @@
 "use client";
 
 import { ThemeProvider } from "next-themes";
-import { ReactNode, useState, useEffect } from "react";
+import { ReactNode } from "react";
 
 export function Providers({ children }: { children: ReactNode }) {
-  const [mounted, setMounted] = useState(false);
-
-  // Prevent hydration mismatch by rendering only after mount
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    // Return a placeholder with the same structure to prevent layout shift
-    return <>{children}</>;
-  }
+  // We do NOT need to check 'mounted' here.
+  // 1. We handled the UI safety in ThemeToggle.jsx already.
+  // 2. We added suppressHydrationWarning to layout.tsx already.
+  // 3. Waiting to mount here would crash components calling useTheme().
 
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>

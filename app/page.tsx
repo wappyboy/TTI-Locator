@@ -8,7 +8,7 @@ import TtiCard from "../components/TtiCard";
 import Pagination from "../components/Pagination"; 
 import ttis from "../data/ttis.json";
 
-// 1. Define the shape of your data
+// 1. Define Data Type
 type Tti = {
   id: string;
   name: string;
@@ -29,21 +29,18 @@ export default function Page() {
   const itemsPerPage = 9; 
   const items: Tti[] = ttis as Tti[];
 
-  // --- HANDLERS (Now with TypeScript Definitions) ---
+  // --- HANDLERS (Clean Code Pattern) ---
   
-  // newQuery is a string
   const handleSearch = (newQuery: string) => {
     setQuery(newQuery);
     setCurrentPage(1); 
   };
 
-  // newRegion is a string OR null
   const handleRegionChange = (newRegion: string | null) => {
     setRegion(newRegion);
     setCurrentPage(1); 
   };
 
-  // e is a Change Event from an HTML Select element
   const handleSortChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setSortOrder(e.target.value);
     setCurrentPage(1); 
@@ -55,7 +52,7 @@ export default function Page() {
     setCurrentPage(1); 
   };
 
-  // --- DATA LOGIC ---
+  // --- MEMOIZED DATA LOGIC ---
 
   const regions = useMemo(() => {
     return Array.from(new Set(items.map((i) => i.region).filter(Boolean))).sort();
@@ -81,12 +78,11 @@ export default function Page() {
     });
   }, [filtered, sortOrder]);
 
-  // Pagination Slicing
+  // Pagination Logic
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = sorted.slice(indexOfFirstItem, indexOfLastItem);
 
-  // pageNumber is a number
   const paginate = (pageNumber: number) => {
     setCurrentPage(pageNumber);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -95,25 +91,30 @@ export default function Page() {
   return (
     <div className="max-w-6xl mx-auto px-4 pb-20 transition-colors duration-300">
       
-      {/* Title */}
+      {/* 1. Page Title */}
       <div className="text-center py-10">
-        <h2 className="text-3xl md:text-4xl font-bold mb-3 tracking-tight text-slate-900 dark:text-white">
+        <h2 className="text-3xl md:text-4xl font-bold mb-3 tracking-tight text-slate-900 dark:text-white drop-shadow-sm">
           Find a Training Center
         </h2>
-        <p className="text-sm md:text-base max-w-2xl mx-auto text-slate-600 dark:text-white/50">
+        <p className="text-sm md:text-base max-w-2xl mx-auto text-slate-600 dark:text-blue-100/70 font-medium">
           Search over {items.length} accredited institutions across the Philippines.
         </p>
       </div>
 
-      {/* Command Bar */}
+      {/* 2. Glass Command Bar (Sticky) */}
       <div className="sticky top-6 z-40 mb-8">
         <div className="
-          relative flex flex-col md:flex-row items-center gap-4 md:gap-6 p-2 rounded-3xl backdrop-blur-xl border shadow-2xl transition-colors duration-300 
+          relative flex flex-col md:flex-row items-center gap-4 md:gap-6 p-2 rounded-3xl 
+          backdrop-blur-xl border shadow-2xl transition-colors duration-300 
+          
+          /* Light Mode: Crisp White Glass */
           bg-white/80 border-slate-200 shadow-slate-300/40 
+          
+          /* Dark Mode: Deep Navy Glass */
           dark:bg-slate-900/80 dark:border-white/10 dark:shadow-black/50
         ">
           
-          {/* Search Input */}
+          {/* Search Input Section */}
           <div className="w-full flex-1 relative group flex items-center">
             <div className="pl-4 pr-2 text-slate-400 dark:text-white/30 group-focus-within:text-blue-500 transition-colors">
               <FiSearch size={20} />
@@ -121,27 +122,38 @@ export default function Page() {
             <SearchBar query={query} setQuery={handleSearch} />
           </div>
           
+          {/* Vertical Divider */}
           <div className="hidden md:block w-px h-10 bg-gradient-to-b from-transparent via-slate-300 dark:via-white/10 to-transparent" />
           
-          {/* Controls */}
+          {/* Filter Controls */}
           <div className="w-full md:w-auto flex flex-col justify-center min-w-[240px] gap-3 md:gap-0">
+            
+            {/* Sort & Count Row */}
             <div className="flex items-center justify-between px-3 md:mb-1">
                <div className="flex items-center gap-2">
                  <FiList className="w-3 h-3 text-blue-600 dark:text-blue-400" />
                  <select 
                    value={sortOrder}
                    onChange={handleSortChange}
-                   className="bg-transparent text-[10px] uppercase tracking-widest font-bold text-slate-500 dark:text-white/40 focus:outline-none cursor-pointer hover:text-blue-500 dark:hover:text-blue-400"
+                   className="
+                     bg-transparent text-[10px] uppercase tracking-widest font-bold 
+                     text-slate-500 dark:text-white/40 
+                     focus:outline-none cursor-pointer 
+                     hover:text-blue-600 dark:hover:text-blue-400 transition-colors
+                   "
                  >
                    <option value="asc">Sort A-Z</option>
                    <option value="desc">Sort Z-A</option>
                  </select>
                </div>
-               <span className="text-[10px] font-mono px-1.5 rounded bg-blue-100 text-blue-700 dark:bg-blue-400/10 dark:text-blue-400">
+               
+               {/* Result Count Badge */}
+               <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-blue-100 text-blue-700 dark:bg-blue-500/20 dark:text-blue-300 border border-transparent dark:border-blue-500/30">
                  {filtered.length} found
                </span>
             </div>
 
+            {/* Horizontal Filter Chips */}
             <div className="w-full md:max-w-xs overflow-x-auto custom-scrollbar px-1 pb-1">
               <FilterChips regions={regions} activeRegion={region} setActiveRegion={handleRegionChange} />
             </div>
@@ -149,29 +161,55 @@ export default function Page() {
         </div>
       </div>
 
-      {/* Grid */}
+      {/* 3. Results Grid */}
       <motion.section layout className="grid gap-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 auto-rows-fr">
         <AnimatePresence mode="popLayout">
           {sorted.length === 0 ? (
+            
+            /* --- EMPTY STATE (Updated for Premium Look) --- */
             <motion.div 
               layout 
               initial={{ opacity: 0, scale: 0.95 }} 
               animate={{ opacity: 1, scale: 1 }} 
               exit={{ opacity: 0, scale: 0.95 }} 
-              className="col-span-full flex flex-col items-center justify-center py-24 text-center border rounded-3xl bg-slate-100/50 border-slate-200 dark:bg-white/5 dark:border-white/10"
+              className="
+                col-span-full flex flex-col items-center justify-center py-24 text-center 
+                rounded-3xl border border-dashed
+                
+                /* Light Mode */
+                bg-white/50 border-slate-300
+                
+                /* Dark Mode */
+                dark:bg-white/5 dark:border-white/10
+              "
             >
-              <div className="p-4 rounded-full mb-4 ring-4 bg-slate-200 text-slate-400 ring-slate-300/50 dark:bg-slate-800 dark:text-slate-500 dark:ring-slate-800/50">
+              <div className="
+                p-5 rounded-full mb-4 ring-4 
+                bg-slate-100 text-slate-400 ring-slate-200 
+                dark:bg-slate-800 dark:text-slate-500 dark:ring-slate-700/50
+              ">
                 <FiInbox size={48} />
               </div>
               <h3 className="text-xl font-bold mb-2 text-slate-900 dark:text-white">No locations found</h3>
+              <p className="text-slate-500 dark:text-slate-400 text-sm mb-6">
+                Try adjusting your search or filter to find what youre looking for.
+              </p>
+              
               <button 
                 onClick={handleClearAll} 
-                className="mt-8 flex items-center gap-2 px-6 py-2.5 text-sm font-semibold rounded-full transition-all shadow-lg bg-blue-500 hover:bg-blue-400 text-white shadow-blue-500/30 dark:bg-blue-600 dark:hover:bg-blue-500 dark:shadow-blue-900/20"
+                className="
+                  flex items-center gap-2 px-6 py-2.5 text-sm font-semibold rounded-full transition-all shadow-lg 
+                  bg-blue-600 hover:bg-blue-500 text-white shadow-blue-500/30 
+                  dark:bg-blue-600 dark:hover:bg-blue-500 dark:shadow-blue-900/40
+                "
               >
                 <FiRefreshCw /> Clear Filters
               </button>
             </motion.div>
+
           ) : (
+            
+            /* --- RENDER CARDS --- */
             currentItems.map((t) => (
               <motion.div 
                 layout 
@@ -189,7 +227,7 @@ export default function Page() {
         </AnimatePresence>
       </motion.section>
 
-      {/* Pagination */}
+      {/* 4. Pagination Controls */}
       <Pagination 
         itemsPerPage={itemsPerPage} 
         totalItems={sorted.length} 

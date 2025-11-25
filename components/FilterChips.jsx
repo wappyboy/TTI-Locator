@@ -4,19 +4,26 @@ import { motion } from "framer-motion";
 
 export default function FilterChips({ regions, activeRegion, setActiveRegion }) {
   
-  // Helper to determine button style based on ACTIVE state only.
+  // Helper to determine button style
   const getButtonStyle = (isActive) => {
     if (isActive) {
-      // ACTIVE STATE
-      // Light: Blue-500 background
-      // Dark: Blue-600 background with glow
-      return "border-blue-400 bg-blue-500 text-white shadow-md shadow-blue-500/30 dark:bg-blue-600 dark:border-blue-500 dark:shadow-[0_0_15px_rgba(37,99,235,0.5)]";
+      // ACTIVE STATE: Gradient Blue-to-Indigo
+      // This matches the "Command Center" aesthetic
+      return `
+        border-transparent text-white shadow-lg shadow-blue-500/25
+        bg-gradient-to-r from-blue-600 to-indigo-600
+        dark:from-blue-500 dark:to-indigo-500
+      `;
     }
     
-    // INACTIVE STATE
-    // Light: Slate-200 background
-    // Dark: Slate-800/50 background
-    return "bg-slate-200 text-slate-600 border-transparent hover:bg-slate-300 hover:text-slate-900 dark:bg-slate-800/50 dark:text-slate-400 dark:border-transparent dark:hover:bg-slate-700 dark:hover:text-white dark:hover:border-slate-600";
+    // INACTIVE STATE: Clean Slate
+    return `
+      bg-slate-100 text-slate-600 border-slate-200 
+      hover:bg-white hover:text-blue-600 hover:border-blue-300 hover:shadow-sm
+      
+      dark:bg-slate-800/50 dark:text-slate-400 dark:border-white/5 
+      dark:hover:bg-slate-700 dark:hover:text-white dark:hover:border-slate-500
+    `;
   };
 
   return (

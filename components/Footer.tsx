@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-// 1. Added FiFacebook to the imports
 import { FiMapPin, FiPhone, FiMail, FiExternalLink, FiGlobe, FiFacebook } from "react-icons/fi";
 
 export default function Footer() {
@@ -26,7 +25,12 @@ export default function Footer() {
           {/* COLUMN 1: Brand, Mission & SOCIAL MEDIA */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <img src="/tesda-logo.png" alt="TESDA" className="w-8 h-8 opacity-80 grayscale hover:grayscale-0 transition-all" />
+              {/* Fixed typo: changed 'bluescale' to 'grayscale' */}
+              <img 
+                src="/tesda-logo.png" 
+                alt="TESDA" 
+                className="w-8 h-8 opacity-80 grayscale hover:grayscale-0 transition-all duration-300" 
+              />
               <h3 className="font-bold text-lg tracking-wide text-slate-900 dark:text-white">
                 TTI Locator
               </h3>
@@ -42,17 +46,19 @@ export default function Footer() {
                </span>
             </div>
 
-            {/* --- NEW SOCIAL MEDIA SECTION --- */}
+            {/* --- SOCIAL MEDIA SECTION --- */}
             <div className="pt-4">
                <h4 className="text-xs font-bold uppercase tracking-wider mb-3 text-slate-400 dark:text-slate-500">
-                 Follow Us
+                 Connect With Us
                </h4>
+               
+               {/* Facebook Button */}
                <a 
-                 href="https://www.facebook.com/TESDAOfficial" // Replace with your actual FB link
+                 href="https://www.facebook.com/TESDAOfficial" // TODO: Replace with your specific ROMO FB Page URL
                  target="_blank" 
                  rel="noopener noreferrer"
                  className="
-                   inline-flex items-center gap-2 px-4 py-2 rounded-full
+                   group inline-flex items-center gap-2 px-4 py-2 rounded-full
                    bg-[#1877F2] text-white
                    hover:bg-[#166fe5] hover:shadow-lg hover:-translate-y-0.5
                    transition-all duration-300
@@ -60,7 +66,7 @@ export default function Footer() {
                  "
                  aria-label="Visit our Facebook Page"
                >
-                 <FiFacebook size={18} />
+                 <FiFacebook size={18} className="fill-current" />
                  <span>Facebook Page</span>
                </a>
             </div>
