@@ -53,7 +53,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <div className="absolute -bottom-[20%] left-[20%] w-[40%] h-[40%] rounded-full bg-cyan-500/20 blur-[120px] dark:bg-cyan-500/10" />
           </div>
 
-         {/* --- BACKGROUND LAYER 3: The "Engineering Graph" (TESDA Vibe) --- */}
+        
+        {/* --- BACKGROUND LAYER 3: The "Engineering Graph" (TESDA Vibe) --- */}
         <div 
           className="fixed inset-0 -z-10 pointer-events-none"
           style={{ 
@@ -73,7 +74,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             WebkitMaskImage: "radial-gradient(circle at center, black 60%, transparent 100%)"
           }}
         />
-
           {/* Header */}
           <Header />
 

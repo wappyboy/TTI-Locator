@@ -5,14 +5,15 @@ import { FiMapPin, FiPhone, FiMail, FiExternalLink, FiGlobe, FiFacebook } from "
 export default function Footer() {
   return (
     <footer className="
-      w-full mt-20 relative 
-      transition-colors duration-300
+      w-full mt-20 relative z-20 
       border-t
+      transition-colors duration-300
       
-      /* LIGHT MODE DEFAULTS */
-      bg-white border-slate-200
+      /* --- THE FIX IS HERE --- */
+      /* 1. Light Mode: Solid Slate-50 (Matches body, blocks grid) */
+      bg-slate-50 border-slate-200
       
-      /* DARK MODE OVERRIDES */
+      /* 2. Dark Mode: Solid Slate-900 (Darker than body, blocks grid) */
       dark:bg-slate-900 dark:border-white/5
     ">
       
@@ -22,10 +23,9 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-16">
           
-          {/* COLUMN 1: Brand, Mission & SOCIAL MEDIA */}
+          {/* COLUMN 1: Brand */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              {/* Fixed typo: changed 'bluescale' to 'grayscale' */}
               <img 
                 src="/tesda-logo.png" 
                 alt="TESDA" 
@@ -46,15 +46,13 @@ export default function Footer() {
                </span>
             </div>
 
-            {/* --- SOCIAL MEDIA SECTION --- */}
+            {/* Social Media */}
             <div className="pt-4">
                <h4 className="text-xs font-bold uppercase tracking-wider mb-3 text-slate-400 dark:text-slate-500">
                  Connect With Us
                </h4>
-               
-               {/* Facebook Button */}
                <a 
-                 href="https://www.facebook.com/TESDAOfficial" // TODO: Replace with your specific ROMO FB Page URL
+                 href="https://www.facebook.com/TESDAOfficial" 
                  target="_blank" 
                  rel="noopener noreferrer"
                  className="
@@ -72,7 +70,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* COLUMN 2: Quick Links */}
+          {/* COLUMN 2: Links */}
           <div>
             <h4 className="font-semibold text-sm uppercase tracking-wider mb-4 text-slate-900 dark:text-white">
               Quick Links
@@ -123,8 +121,9 @@ export default function Footer() {
       {/* BOTTOM BAR */}
       <div className="
         py-6 border-t
-        bg-slate-50 border-slate-200
-        dark:bg-black/20 dark:border-white/5
+        /* Solid backgrounds to keep grid hidden */
+        bg-slate-100 border-slate-200
+        dark:bg-black dark:border-white/5
       ">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
