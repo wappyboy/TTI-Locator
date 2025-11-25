@@ -11,7 +11,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 // 1. Enhanced Metadata for SEO & Sharing
 export const metadata: Metadata = {
-  title: "NITESD TTI Locator | TESDA",
+  title: "ROMO-TTIMD TTI Locator | TESDA",
   description: "Official government tool to locate TESDA Training and Testing Institutions (TTIs) nationwide.",
   icons: {
     icon: "/favicon.ico", // Ensure you have this file in public/
