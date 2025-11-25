@@ -46,13 +46,13 @@ export default function Header() {
               bg-gradient-to-r from-blue-700 via-blue-500 to-blue-800
               dark:from-white dark:via-blue-100 dark:to-white/80
             ">
-              NITESD
+              ROMO-TTIMD
             </h1>
             <p className="
               hidden md:block text-xs font-medium tracking-[0.2em] uppercase mt-1
               text-slate-500 dark:text-blue-200/70
             ">
-              National Institute for Technical Education
+              Regional Operations Management Division
             </p>
           </div>
 

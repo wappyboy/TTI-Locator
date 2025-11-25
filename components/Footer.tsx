@@ -38,7 +38,7 @@ export default function Footer() {
             
             <div className="flex items-center gap-4 pt-2">
                <span className="px-2 py-1 rounded bg-blue-500/10 text-blue-600 dark:text-blue-400 text-[10px] font-mono border border-blue-500/20">
-                 OFFICIAL NITESD TOOL
+                 OFFICIAL ROMO TOOL
                </span>
             </div>
 
@@ -127,7 +127,7 @@ export default function Footer() {
           </div>
 
           <p className="text-xs text-center md:text-right text-slate-500 dark:text-slate-400">
-            © {new Date().getFullYear()} NITESD • TESDA. All Content is in the public domain unless otherwise stated.
+            © {new Date().getFullYear()} ROMO • TESDA. All Content is in the public domain unless otherwise stated.
           </p>
         </div>
       </div>
