@@ -1,0 +1,170 @@
+[
+  {
+    "id": "rtc-la-union",
+    "name": "Regional Training Center - La Union",
+    "region": "Region I",
+    "province": "La Union",
+    "lat": 16.6158,
+    "lng": 120.3209
+  },
+  {
+    "id": "bangui-institute",
+    "name": "Bangui Institute of Technology (BIT)",
+    "region": "Region I",
+    "province": "Ilocos Norte",
+    "lat": 18.5367,
+    "lng": 120.7658
+  },
+  {
+    "id": "marcos-agro-industrial",
+    "name": "Marcos Agro-Industrial School",
+    "region": "Region I",
+    "province": "Ilocos Norte",
+    "lat": 18.0385,
+    "lng": 120.7103
+  },
+  {
+    "id": "luciano-millan-sat",
+    "name": "Luciano Millan Memorial School of Arts and Trades",
+    "region": "Region I",
+    "province": "Pangasinan",
+    "lat": 16.0051,
+    "lng": 120.6695
+  },
+  {
+    "id": "pangasinan-tech-institute",
+    "name": "Pangasinan Technological Institute",
+    "region": "Region I",
+    "province": "Pangasinan",
+    "lat": 16.0336,
+    "lng": 120.2678
+  },
+  {
+    "id": "pangasinan-sat",
+    "name": "Pangasinan School of Arts and Trades",
+    "region": "Region I",
+    "province": "Pangasinan",
+    "lat": 16.0232,
+    "lng": 120.2285
+  },
+  {
+    "id": "ptc-ilocos-norte",
+    "name": "Provincial Training Center - Ilocos Norte",
+    "region": "Region I",
+    "province": "Ilocos Norte",
+    "lat": 17.9800,
+    "lng": 120.6500
+  },
+  {
+    "id": "ptc-candon",
+    "name": "Provincial Training Center - Candon",
+    "region": "Region I",
+    "province": "Ilocos Sur",
+    "lat": 17.2100,
+    "lng": 120.4600
+  },
+  {
+    "id": "ptc-la-union",
+    "name": "Provincial Training Center - La Union",
+    "region": "Region I",
+    "province": "La Union",
+    "lat": 16.3235,
+    "lng": 120.3592
+  },
+  {
+    "id": "ptc-pangasinan",
+    "name": "Provincial Training Center - Pangasinan",
+    "region": "Region I",
+    "province": "Pangasinan",
+    "lat": 16.0300,
+    "lng": 120.2300
+  },
+  {
+    "id": "marinduque-ptc",
+    "name": "Provincial Training Center – Marinduque",
+    "region": "MIMAROPA",
+    "province": "Marinduque",
+    "lat": 13.4468,
+    "lng": 121.8331
+  },
+  {
+    "id": "buyabod-sat",
+    "name": "Buyabod School of Arts and Trades",
+    "region": "MIMAROPA",
+    "province": "Marinduque",
+    "lat": 13.4256, 
+    "lng": 121.9620
+  },
+  {
+    "id": "torrijos-sat",
+    "name": "Torrijos Poblacion School of Arts and Trades",
+    "region": "MIMAROPA",
+    "province": "Marinduque",
+    "lat": 13.3194,
+    "lng": 122.0647
+  },
+  {
+    "id": "ptc-oriental-mindoro",
+    "name": "Provincial Training Center - Oriental Mindoro",
+    "region": "MIMAROPA",
+    "province": "Oriental Mindoro",
+    "lat": 13.3236,
+    "lng": 121.2902
+  },
+  {
+    "id": "simeon-suan-vocational",
+    "name": "Simeon Suan Vocational Technical College",
+    "region": "MIMAROPA",
+    "province": "Oriental Mindoro",
+    "lat": 12.9698,
+    "lng": 121.4871
+  },
+  {
+    "id": "ptc-occidental-mindoro",
+    "name": "Provincial Training Center - Occidental Mindoro",
+    "region": "MIMAROPA",
+    "province": "Occidental Mindoro",
+    "lat": 12.3685,
+    "lng": 121.0678
+  },
+  {
+    "id": "rizal-occidental-tesda",
+    "name": "Rizal Occidental Mindoro TESDA Training Center",
+    "region": "MIMAROPA",
+    "province": "Occidental Mindoro",
+    "lat": 12.5032,
+    "lng": 120.9965
+  },
+  {
+    "id": "romblon-national-it",
+    "name": "Romblon National Institute of Technology",
+    "region": "MIMAROPA",
+    "province": "Romblon",
+    "lat": 12.3725,
+    "lng": 121.9844
+  },
+  {
+    "id": "ptc-romblon",
+    "name": "Provincial Training Center - Romblon",
+    "region": "MIMAROPA",
+    "province": "Romblon",
+    "lat": 12.4089,
+    "lng": 122.5307
+  },
+  {
+    "id": "ptc-palawan",
+    "name": "Provincial Training Center - Palawan",
+    "region": "MIMAROPA",
+    "province": "Palawan",
+    "lat": 9.7756,
+    "lng": 118.7360
+  },
+  {
+    "id": "puerto-princesa-sat",
+    "name": "Puerto Princesa School of Arts and Trades",
+    "region": "MIMAROPA",
+    "province": "Palawan",
+    "lat": 9.7774,
+    "lng": 118.7382
+  }
+]
