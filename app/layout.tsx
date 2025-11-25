@@ -53,17 +53,26 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <div className="absolute -bottom-[20%] left-[20%] w-[40%] h-[40%] rounded-full bg-cyan-500/20 blur-[120px] dark:bg-cyan-500/10" />
           </div>
 
-          {/* --- BACKGROUND LAYER 3: Grid Pattern (CSS Only) --- */}
-          {/* This creates a tech grid without needing an external SVG file */}
-          <div 
-            className="fixed inset-0 -z-10 opacity-40 dark:opacity-20 pointer-events-none"
-            style={{ 
-              backgroundImage: "radial-gradient(#94a3b8 1px, transparent 1px)", 
-              backgroundSize: "32px 32px",
-              maskImage: "radial-gradient(circle at center, black 50%, transparent 100%)", // Vignette effect
-              WebkitMaskImage: "radial-gradient(circle at center, black 50%, transparent 100%)"
-            }}
-          />
+         {/* --- BACKGROUND LAYER 3: The "Engineering Graph" (TESDA Vibe) --- */}
+        <div 
+          className="fixed inset-0 -z-10 pointer-events-none"
+          style={{ 
+            // This creates two grids: 
+            // 1. Small grid (Minor lines) every 20px
+            // 2. Large grid (Major lines) every 100px
+            backgroundImage: `
+              linear-gradient(to right, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+              linear-gradient(to right, rgba(148, 163, 184, 0.05) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(148, 163, 184, 0.05) 1px, transparent 1px)
+            `,
+            backgroundSize: "100px 100px, 100px 100px, 20px 20px, 20px 20px",
+            
+            // Focus the eye on the center (Vignette)
+            maskImage: "radial-gradient(circle at center, black 60%, transparent 100%)",
+            WebkitMaskImage: "radial-gradient(circle at center, black 60%, transparent 100%)"
+          }}
+        />
 
           {/* Header */}
           <Header />

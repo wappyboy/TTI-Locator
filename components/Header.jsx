@@ -31,24 +31,25 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex items-center justify-between py-4 h-24">
 
-          {/* LEFT: 3D ANIMATED LOGOS */}
-          <div className="flex items-center gap-4 z-20">
+         {/* LEFT: 3D ANIMATED LOGOS */}
+          <div className="flex items-center gap-3 sm:gap-4 z-20">
             
-            {/* 1. BAGONG PILIPINAS (3D) */}
+            {/* 1. BAGONG PILIPINAS (3D) - NOW ALWAYS VISIBLE */}
             <div style={{ perspective: "1000px" }}>
               <motion.div 
-                className="w-14 h-14 relative"
+                // Responsive Size: 
+                // w-10 (40px) on Mobile
+                // sm:w-14 (56px) on Desktop
+                className="w-10 h-10 sm:w-14 sm:h-14 relative"
                 animate={{ rotateY: 360 }}
                 transition={spinTransition}
                 style={{ transformStyle: "preserve-3d" }}
               >
-                {/* Front Image */}
                 <img 
                   src="/bagong-pilipinas.png" 
                   alt="Bagong Pilipinas" 
                   className="w-full h-full object-contain drop-shadow-md" 
                 />
-                {/* 3D Depth Shadow (Behind) */}
                 <div 
                   className="absolute inset-0 rounded-full bg-black/10 blur-md -z-10" 
                   style={{ transform: "translateZ(-4px)" }} 
@@ -56,13 +57,13 @@ export default function Header() {
               </motion.div>
             </div>
             
-            {/* Divider */}
-            <div className="w-px h-10 hidden sm:block bg-slate-300 dark:bg-white/10" />
+            {/* Divider - Always visible now */}
+            <div className="block w-px h-8 sm:h-10 bg-slate-300 dark:bg-white/10" />
             
             {/* 2. TESDA (3D) */}
             <div style={{ perspective: "1000px" }}>
               <motion.div 
-                className="w-14 h-14 relative"
+                className="w-10 h-10 sm:w-14 sm:h-14 relative"
                 animate={{ rotateY: 360 }}
                 transition={spinTransition}
                 style={{ transformStyle: "preserve-3d" }}

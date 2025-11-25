@@ -94,13 +94,25 @@ export default function TtiCard({ tti }) {
           ${theme.hoverBorder}
         `}
       >
-        {/* Background Pattern (CSS-based Dot Grid) */}
+          {/* --- BACKGROUND LAYER 3: The "Engineering Graph" (TESDA Vibe) --- */}
         <div 
-          className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none transition-opacity group-hover:opacity-[0.08]"
+          className="fixed inset-0 -z-10 pointer-events-none"
           style={{ 
-            backgroundImage: "radial-gradient(currentColor 1px, transparent 1px)", 
-            backgroundSize: "20px 20px" 
-          }} 
+            // This creates two grids: 
+            // 1. Small grid (Minor lines) every 20px
+            // 2. Large grid (Major lines) every 100px
+            backgroundImage: `
+              linear-gradient(to right, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+              linear-gradient(to right, rgba(148, 163, 184, 0.05) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(148, 163, 184, 0.05) 1px, transparent 1px)
+            `,
+            backgroundSize: "100px 100px, 100px 100px, 20px 20px, 20px 20px",
+            
+            // Focus the eye on the center (Vignette)
+            maskImage: "radial-gradient(circle at center, black 60%, transparent 100%)",
+            WebkitMaskImage: "radial-gradient(circle at center, black 60%, transparent 100%)"
+          }}
         />
 
         {/* Decorative Glow (Dynamic Color) */}
